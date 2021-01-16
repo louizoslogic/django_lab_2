@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>What you got!</h1>
+
+    <ul>
+        {% for item in items %}
+            {% if item.completed %}
+                <li>{{item.description}} {{item.completedate}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <button>  <a href="/">go back</a></button>  
+  </body>
+</html>

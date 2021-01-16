@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+        <h1>Grocery List</h1>
+        <a href="/complete">Completed List</a>
+
+        <form action="{% url 'grocerylist:create_todo' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="description"/>
+            <button type="submit">create todo</button>
+        </form>
+
+        <h2>Incomplete</h2>
+        <ul>
+            <form method="post">
+                {% csrf_token %}
+                {% for item in items %}
+                    {% if not item.completed %}
+                        <li>
+                            {{ item.description }} {{item.createdate}}
+                            <button type="submit" formaction="{% url 'grocerylist:complete_todo' item.id %}">Complete</button>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </form>
+        </ul>
+        
+  </body>
+</html>
